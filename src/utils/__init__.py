@@ -1,5 +1,4 @@
 import torch
-import torch.nn.functional as F
 
 def logsumexp(x, dim, keepdim=False):
     """
@@ -8,4 +7,6 @@ def logsumexp(x, dim, keepdim=False):
     :param keepdim:
     :return:
     """
-    raise NotImplementedError
+    max, _ = torch.max(x, dim=dim, keepdim=True)
+    out = (x - max).exp().sum(dim=dim, keepdim=keepdim).log()
+    return out

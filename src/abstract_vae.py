@@ -18,9 +18,10 @@ class AbstractVAE(ABC, nn.Module):
     @abstractmethod
     def posterior(self, z, params, *args, **kwargs):
         """
-        Compute the posterior probability of a latent sample z ~ q(z|x)
-        :param z:
-        :param params:
+        Compute the log probability of a latent sample z ~ q(z|x) under
+        the posterior.
+        :param z: latent variable
+        :param params: parameters of the posterior distribution
         :return:
         """
         raise NotImplementedError
@@ -28,6 +29,7 @@ class AbstractVAE(ABC, nn.Module):
     @abstractmethod
     def prior(self, z, params, *args, **kwargs):
         """
+        Get the log probability of a latent sample under the prior p(z)
         :param z:
         :param params:
         :return:
@@ -59,7 +61,7 @@ class AbstractVAE(ABC, nn.Module):
         """
         Infer the latent value of a given data point x -> z
         :param x: data point
-        :param mean_only: whether to use the mean of the posterior or draw a sample
+        :param mean_only: whether to use the mean of the posterior or draw a random sample
         :return:
         """
         raise NotImplementedError
