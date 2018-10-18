@@ -8,5 +8,5 @@ def logsumexp(x, dim, keepdim=False):
     :return:
     """
     max, _ = torch.max(x, dim=dim, keepdim=True)
-    out = (x - max).exp().sum(dim=dim, keepdim=keepdim).log()
+    out = max + (x - max).exp().sum(dim=dim, keepdim=keepdim).log()
     return out
