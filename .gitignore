@@ -65,3 +65,5 @@ ENV/
 
 #intellij
 .idea/
+
+.DS_Store
